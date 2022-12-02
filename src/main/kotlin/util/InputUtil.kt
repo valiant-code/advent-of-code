@@ -6,7 +6,7 @@ import java.nio.file.Files
 import java.nio.file.Paths
 
 object InputUtil {
-    // sample filepath: day1/input.txt
+    // sample filepath: 2021/day1/input.txt
     fun readFileAsString(filepath: String): String {
         val file = getFileFromResources(filepath)
         return readFile(file.path)
