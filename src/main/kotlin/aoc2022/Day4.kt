@@ -6,8 +6,8 @@ import util.TimeUtil
 import util.colorize
 
 private fun main() {
-    //pt 1 -
-    //pt 2 -
+    //pt 1 - 576
+    //pt 2 - 905
     TimeUtil.startClock(1, ::partOne)
     TimeUtil.startClock(2, ::partTwo)
 }
@@ -22,7 +22,7 @@ private fun partOne(pt: Int = 1) {
         }.map { it[0] to it[1] }
 
     val answer = input.count {
-        it.first.toSet().containsAll(it.second.toSet())
+        it.first.toSet().containsAll(it.second.toSet()) || it.second.toSet().containsAll(it.first.toSet())
     }
 
     println("pt $pt answer: ${answer colorize ConsoleColor.PURPLE_BRIGHT}")
