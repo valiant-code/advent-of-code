@@ -12,7 +12,19 @@ private fun main() {
     TimeUtil.startClock(2, ::partTwo)
 }
 
-class Assignment(val min: Int, val max: Int);
+// if there were bigger ranges in the input, using an IntRange wouldn't be as feasible
+// this boolean logic would work for all cases
+
+// it.first.containsAll(it.second) || it.second.containsAll(it.first)
+//private fun Pair<Int, Int>.containsAll(other: Pair<Int, Int>): Boolean {
+//    return this.first <= other.first && this.second >= other.second;
+//}
+
+// it.first.containsSome(it.second);
+//private fun Pair<Int, Int>.containsSome(other: Pair<Int, Int>): Boolean {
+//    return (this.first <= other.first && this.second >= other.first) ||
+//            (other.first <= this.first && other.second >= this.first)
+//}
 
 private fun partOne(pt: Int = 1) {
     //In how many assignment pairs does one range fully contain the other?
