@@ -21,8 +21,8 @@ private fun partOne(pt: Int = 1) {
     val input = InputUtil.readFileAsStringList("2022/day5/input.txt", "\n\n")
     val stackInput = ArrayDeque(input[0].split("\n"))
     val instructions = input[1].split("\n")
-    val numberOfStacks = stackInput.removeLast().split(Regex("\\W+")).last().toInt();
-    val stacksMap: MutableMap<Int, ArrayDeque<Char>> = mutableMapOf();
+    val numberOfStacks = stackInput.removeLast().split(Regex("\\W+")).last().toInt()
+    val stacksMap: MutableMap<Int, ArrayDeque<Char>> = mutableMapOf()
 
     for (i in 1..numberOfStacks) {
         stacksMap[i] = ArrayDeque()
@@ -30,21 +30,20 @@ private fun partOne(pt: Int = 1) {
 
     // parse the current map into ArrayDeque's
     stackInput.forEach { line ->
-        var cursor = 1;
-        var counter = 0;
+        var cursor = 1
+        var counter = 0
         while (cursor < line.length) {
-            counter++;
-            val nextChar = line[cursor];
+            counter++
+            val nextChar = line[cursor]
             if (!nextChar.isWhitespace()) {
-                stacksMap.get(counter)!!.addLast(nextChar)
+                stacksMap[counter]!!.addLast(nextChar)
             }
-            cursor += 4;
+            cursor += 4
         }
     }
 
-    val pattern = Regex("\\d+")
     instructions.map(String::findAllNumbers).forEach { instructionList ->
-        val amount = instructionList[0];
+        val amount = instructionList[0]
         val from = stacksMap[instructionList[1]]!!
         val to = stacksMap[instructionList[2]]!!
         for (i in 1..amount) {
@@ -61,8 +60,8 @@ private fun partTwo(pt: Int = 2) {
     val input = InputUtil.readFileAsStringList("2022/day5/input.txt", "\n\n")
     val stackInput = ArrayDeque(input[0].split("\n"))
     val instructions = input[1].split("\n")
-    val numberOfStacks = stackInput.removeLast().split(Regex("\\W+")).last().toInt();
-    val stacksMap: MutableMap<Int, ArrayDeque<Char>> = mutableMapOf();
+    val numberOfStacks = stackInput.removeLast().split(Regex("\\W+")).last().toInt()
+    val stacksMap: MutableMap<Int, ArrayDeque<Char>> = mutableMapOf()
 
     for (i in 1..numberOfStacks) {
         stacksMap[i] = ArrayDeque()
@@ -70,21 +69,20 @@ private fun partTwo(pt: Int = 2) {
 
     // parse the current map into ArrayDeque's
     stackInput.forEach { line ->
-        var cursor = 1;
-        var counter = 0;
+        var cursor = 1
+        var counter = 0
         while (cursor < line.length) {
-            counter++;
-            val nextChar = line[cursor];
+            counter++
+            val nextChar = line[cursor]
             if (!nextChar.isWhitespace()) {
-                stacksMap.get(counter)!!.addLast(nextChar)
+                stacksMap[counter]!!.addLast(nextChar)
             }
-            cursor += 4;
+            cursor += 4
         }
     }
 
-    val pattern = Regex("\\d+")
     instructions.map(String::findAllNumbers).forEach { instructionList ->
-        val amount = instructionList[0];
+        val amount = instructionList[0]
         val from = stacksMap[instructionList[1]]!!
         val to = stacksMap[instructionList[2]]!!
         for (i in amount downTo 1) {
