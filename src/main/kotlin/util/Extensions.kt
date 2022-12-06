@@ -9,7 +9,7 @@ fun String.findAllNumbers(singleDigit: Boolean = false): List<Int> {
 }
 
 fun String.findAll(regexStr: String): List<String> {
-    return Regex(regexStr).findAll(this).toList().map { it.value }
+    return findAll(Regex(regexStr))
 }
 
 fun String.findAll(regex: Regex): List<String> {
