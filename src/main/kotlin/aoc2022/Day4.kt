@@ -30,7 +30,10 @@ private fun partOne(pt: Int = 1) {
     //In how many assignment pairs does one range fully contain the other?
     val input = InputUtil.readFileAsStringList("2022/day4/input.txt", "\n")
         .map { line -> line.split(",")
-            .map { it.split("-")[0].toInt()..it.split("-")[1].toInt() }
+            .map {
+                val (min, max) = it.split("-")
+                min.toInt()..max.toInt()
+            }
         }.map { it[0] to it[1] }
 
     val answer = input.count {

@@ -18,9 +18,9 @@ private fun main() {
 //move 3 from 1 to 3
 
 private fun partOne(pt: Int = 1) {
-    val input = InputUtil.readFileAsStringList("2022/day5/input.txt", "\n\n")
-    val stackInput = ArrayDeque(input[0].split("\n"))
-    val instructions = input[1].split("\n")
+    val (crates, instructionList) = InputUtil.readFileAsStringList("2022/day5/input.txt", "\n\n")
+    val stackInput = ArrayDeque(crates.split("\n"))
+    val instructions = instructionList.split("\n")
     val numberOfStacks = stackInput.removeLast().split(Regex("\\W+")).last().toInt()
     val stacksMap: MutableMap<Int, ArrayDeque<Char>> = mutableMapOf()
 
@@ -42,10 +42,9 @@ private fun partOne(pt: Int = 1) {
         }
     }
 
-    instructions.map(String::findAllNumbers).forEach { instructionList ->
-        val amount = instructionList[0]
-        val from = stacksMap[instructionList[1]]!!
-        val to = stacksMap[instructionList[2]]!!
+    instructions.map(String::findAllNumbers).forEach { (amount, fromLabel, toLabel) ->
+        val from = stacksMap[fromLabel]!!
+        val to = stacksMap[toLabel]!!
         for (i in 1..amount) {
             to.addFirst(from.removeFirst())
         }
@@ -57,9 +56,9 @@ private fun partOne(pt: Int = 1) {
 }
 
 private fun partTwo(pt: Int = 2) {
-    val input = InputUtil.readFileAsStringList("2022/day5/input.txt", "\n\n")
-    val stackInput = ArrayDeque(input[0].split("\n"))
-    val instructions = input[1].split("\n")
+    val (crates, instructionInput) = InputUtil.readFileAsStringList("2022/day5/input.txt", "\n\n")
+    val stackInput = ArrayDeque(crates.split("\n"))
+    val instructions = instructionInput.split("\n")
     val numberOfStacks = stackInput.removeLast().split(Regex("\\W+")).last().toInt()
     val stacksMap: MutableMap<Int, ArrayDeque<Char>> = mutableMapOf()
 
@@ -81,10 +80,9 @@ private fun partTwo(pt: Int = 2) {
         }
     }
 
-    instructions.map(String::findAllNumbers).forEach { instructionList ->
-        val amount = instructionList[0]
-        val from = stacksMap[instructionList[1]]!!
-        val to = stacksMap[instructionList[2]]!!
+    instructions.map(String::findAllNumbers).forEach { (amount, fromLabel, toLabel) ->
+        val from = stacksMap[fromLabel]!!
+        val to = stacksMap[toLabel]!!
         for (i in amount downTo 1) {
             //remove them in reverse from the bottom of our stack up
             // So they retain the same order when put in the new stack

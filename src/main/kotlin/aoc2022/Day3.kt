@@ -21,7 +21,7 @@ private fun partOne(pt: Int = 1) {
                 it.substring(it.length / 2, it.length).toCharArray().toSet()
     }
 
-    val answer = input.sumOf { l -> alphabet.indexOf(l.first.intersect(l.second).first()) };
+    val answer = input.sumOf { alphabet.indexOf(it.first.intersect(it.second).first()) };
     println("pt $pt answer: ${answer colorize ConsoleColor.PURPLE_BRIGHT}")
 }
 
@@ -30,8 +30,8 @@ private fun partTwo(pt: Int = 2) {
         .map { it.toCharArray().toSet() }
         .windowed(3, 3)
 
-    val answer = input.sumOf { group ->
-        alphabet.indexOf(group[0].intersect(group[1].intersect(group[2])).first())
+    val answer = input.sumOf { (groupA, groupB, groupC) ->
+        alphabet.indexOf(groupA.intersect(groupB.intersect(groupC)).first())
     }
     println("pt $pt answer: ${answer colorize ConsoleColor.PURPLE_BRIGHT}")
 }

@@ -65,8 +65,9 @@ private fun playGame(player: Char, opp: Char): Int {
 private fun partOne(pt: Int = 1) {
     // A,X = Rock, B,Y = Paper, C,Z = Scissors
     // What would your total score be if everything goes exactly according to your strategy guide?
-    val input = InputUtil.readFileAsStringList("2022/day2/input.txt", "\n").map {
-        it[0] to it[2].pt1Translate()
+    val input = InputUtil.readFileAsStringList("2022/day2/input.txt", "\n")
+        .map { it.toCharArray() }
+        .map { (opp, _, code) -> opp to code.pt1Translate()
     }
 
     val answer = input.sumOf { playGame(it.second, it.first) };
@@ -76,8 +77,10 @@ private fun partOne(pt: Int = 1) {
 private fun partTwo(pt: Int = 2) {
     //the second column says how the round needs to end:
     // X means you need to lose, Y means you need to end the round in a draw, and Z means you need to win
-    val input = InputUtil.readFileAsStringList("2022/day2/input.txt", "\n").map {
-        it[0] to it[2].pt2Translate(it[0])
+    val input = InputUtil.readFileAsStringList("2022/day2/input.txt", "\n")
+        .map { it.toCharArray() }
+        .map { (opp, _, code) ->
+            opp to code.pt2Translate(opp)
     }
 
     val answer = input.sumOf { playGame(it.second, it.first) };
