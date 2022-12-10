@@ -1,5 +1,9 @@
 package util
 
+fun <A>queueOf(vararg items: A): ArrayDeque<A> {
+    return ArrayDeque(items.toList())
+}
+
 fun <T> Iterable<T>.takeWhileInclusive(predicate: (T) -> Boolean): List<T> {
     var shouldContinue = true
     return takeWhile {
