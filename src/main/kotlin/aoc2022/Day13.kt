@@ -90,8 +90,6 @@ private class SignalPairItem(val items: MutableList<SignalPairItem> = mutableLis
     override fun toString(): String {
         return "${if (items.size == 0) (value ?: "") else items.toString()}"
     }
-
-
 }
 
 private fun partOne(pt: Long = 1) {
@@ -99,9 +97,7 @@ private fun partOne(pt: Long = 1) {
         .map { pair ->
             val (p1, p2) = pair.split("\n")
                 .map { str -> str.substring(1, str.length - 1) }
-                .map {
-                    SignalPairItem(it)
-                }
+                .map { SignalPairItem(it) }
             p1 to p2
         }
 
