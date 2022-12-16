@@ -18,7 +18,10 @@ fun CharSequence.positionOf(c: Char): Int {
 }
 
 fun String.findAllNumbers(singleDigit: Boolean = false): List<Int> {
-    return Regex("\\d${if (singleDigit) "" else "+"}").findAll(this).toList().map { it.value.toInt() }
+    return Regex("-?\\d${if (singleDigit) "" else "+"}").findAll(this).toList().map { it.value.toInt() }
+}
+fun String.findAllNumbersAsLong(singleDigit: Boolean = false): List<Long> {
+    return Regex("-?\\d${if (singleDigit) "" else "+"}").findAll(this).toList().map { it.value.toLong() }
 }
 
 fun String.findAll(regexStr: String): List<String> {
