@@ -20,7 +20,7 @@ private fun findRequiredDice(line: String, color: String): Int {
 private fun partOne(pt: Int = 1) {
     //Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green
     //Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue
-    val input = InputUtil.readFileAsStringList("2023/day2/input.txt");
+    val input = InputUtil.readFileAsStringList("2023/day2input.txt");
 
 
     val possibleGames = input.mapNotNull { line ->
@@ -46,7 +46,7 @@ private fun partOne(pt: Int = 1) {
 private fun partTwo(pt: Int = 2) {
     //Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green
     //Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue
-    val input = InputUtil.readFileAsStringList("2023/day2/input.txt");
+    val input = InputUtil.readFileAsStringList("2023/day2input.txt");
 
     //fewest number of cubes of each color
     val powerValues = input.map { line ->

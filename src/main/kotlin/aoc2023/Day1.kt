@@ -10,7 +10,7 @@ private fun main() {
 }
 
 private fun partOne(pt: Int = 1) {
-    val input = InputUtil.readFileAsStringList("2023/day1/input.txt");
+    val input = InputUtil.readFileAsStringList("2023/day1input.txt");
     val numberLists = input.map { line ->
         line.findAll("\\d")
     }
@@ -42,16 +42,49 @@ fun parseNum(str: String): Int {
     }
 }
 
+fun parseNumStr(str: String): String {
+    return when (str) {
+        "one" -> "o1e"
+        "two" -> "t2o"
+        "three" -> "t3e"
+        "four" -> "f4r"
+        "five" -> "f5e"
+        "six" -> "s6x"
+        "seven" -> "s7n"
+        "eight" -> "e8t"
+        "nine" -> "n9e"
+        else -> {
+            throw RuntimeException("bad string given to parseNum")
+        };
+    }
+}
+
+fun parseTwo(input: List<String>) {
+    val numStrings = listOf("one", "two", "three", "four", "five", "six", "seven", "eight", "nine")
+    val numLists = input.map { line ->
+        var parsedLine = line;
+        numStrings.forEach { num -> parsedLine = parsedLine.replace(num, parseNumStr(num)) }
+        parsedLine.findAllNumbers(true)
+    }
+    val answer = numLists.map { numbers ->
+        numbers.first().toString() + numbers.last().toString()
+    }.map(String::toInt).sum()
+    println("Alt pt 2 answer: ${answer colorize ConsoleColor.BLUE_UNDERLINED}")
+}
+
+
 private fun partTwo(pt: Int = 2) {
+
     // Some digits are actually spelled out with letters:
     // one, two, three, four, five, six, seven, eight, and nine also count as valid "digits".
     val numPattern = Regex("\\d|one|two|three|four|five|six|seven|eight|nine");
     val numPatternBackwards = Regex("enin|thgie|neves|xis|evif|ruof|eerht|owt|eno|\\d");
-    val input = InputUtil.readFileAsStringList("2023/day1/input.txt");
+    val input = InputUtil.readFileAsStringList("2023/day1input.txt");
+    parseTwo(input) //alternate method
     val numberLists = input.map { line ->
         listOf(
-            parseNum(numPattern.find(line)!!.value),
-            parseNum(numPatternBackwards.find(line.reversed())!!.value.reversed())
+            parseNum(numPattern.find(line)!!.value), //4threeight
+            parseNum(numPatternBackwards.find(line.reversed())!!.value.reversed()) //enoevif3
         )
     }
 
