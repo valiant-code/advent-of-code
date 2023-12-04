@@ -42,8 +42,6 @@ private fun partOne(pt: Int = 1) {
             symbolsMap[lineNum to it.range.first] = it.value
         }
     }
-
-    //any number adjacent to a symbol, even diagonally, is a "part number" and should be included in your sum
     val validParts = possibleParts.filter { part ->
         part.border.any { coord -> symbolsMap.containsKey(coord)}
     }
