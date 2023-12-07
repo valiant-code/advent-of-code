@@ -13,6 +13,26 @@ fun <T> Iterable<T>.takeWhileInclusive(predicate: (T) -> Boolean): List<T> {
     }
 }
 
+
+fun LongRange.binarySearch(comparison: (Long) -> Int): Long {
+    var low = start
+    var high = endInclusive
+
+    while (low <= high) {
+        val mid = (low + high).ushr(1) // safe from overflows
+        val midVal = ((high - low) / 2) + low
+        val cmp = comparison(midVal)
+
+        if (cmp < 0)
+            low = mid + 1
+        else if (cmp > 0)
+            high = mid - 1
+        else
+            return mid // key found
+    }
+    return -(low + 1)  // key not found
+}
+
 fun CharSequence.positionOf(c: Char): Int {
     return this.indexOf(c) + 1;
 }
