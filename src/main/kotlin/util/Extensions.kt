@@ -1,6 +1,6 @@
 package util
 
-fun <A>queueOf(vararg items: A): ArrayDeque<A> {
+fun <A> queueOf(vararg items: A): ArrayDeque<A> {
     return ArrayDeque(items.toList())
 }
 
@@ -20,8 +20,7 @@ fun LongRange.binarySearch(comparison: (Long) -> Int): Long {
 
     while (low <= high) {
         val mid = (low + high).ushr(1) // safe from overflows
-        val midVal = ((high - low) / 2) + low
-        val cmp = comparison(midVal)
+        val cmp = comparison(mid)
 
         if (cmp < 0)
             low = mid + 1
@@ -40,6 +39,7 @@ fun CharSequence.positionOf(c: Char): Int {
 fun String.findAllNumbers(singleDigit: Boolean = false): List<Int> {
     return Regex("-?\\d${if (singleDigit) "" else "+"}").findAll(this).toList().map { it.value.toInt() }
 }
+
 fun String.findAllNumbersAsLong(singleDigit: Boolean = false): List<Long> {
     return Regex("-?\\d${if (singleDigit) "" else "+"}").findAll(this).toList().map { it.value.toLong() }
 }

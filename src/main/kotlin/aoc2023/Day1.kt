@@ -27,7 +27,7 @@ private fun partOne(pt: Int = 1) {
     println("pt $pt answer: ${answer colorize ConsoleColor.BLUE_BRIGHT}")
 }
 
-fun parseNum(str: String): Int {
+private fun parseNum(str: String): Int {
     return when (str) {
         "one" -> 1
         "two" -> 2
@@ -42,7 +42,7 @@ fun parseNum(str: String): Int {
     }
 }
 
-fun parseNumStr(str: String): String {
+private fun parseNumStr(str: String): String {
     return when (str) {
         "one" -> "o1e"
         "two" -> "t2o"
